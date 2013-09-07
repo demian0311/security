@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="release" name="begin-crypto-examples">
+	
+    <!--
+     !   Properties
+    -->
+    <property name="bin"                 value="./bin"/>
+    <property name="doc"                 value="./doc"/>
+    <property name="src"                 value="./src"/>
+    <property name="version"             value="1.0"/>
+
+    <!--
+     !   Path
+    -->
+    <path id="project.path">
+        <pathelement location="${bin}"/>
+    </path>
+
+    <!--
+     !   Release generation
+    -->
+    <target name="release" depends="build,javadoc">
+    </target>
+	
+    <!--
+     !   Class file compilation
+    -->
+    <target name="build">
+        <mkdir dir="${bin}"/>
+        <javac srcdir="${src}"
+               destdir="${bin}"
+               includes="**/*.java"
+               deprecation="yes">
+            <classpath  refid="project.path"/>
+        </javac>
+    </target>
+
+    <!--
+     !   JavaDoc
+    -->
+    <target name="javadoc">
+        <mkdir dir="${doc}"/>
+        <javadoc   use="Yes"
+                   destdir="${doc}"
+                   windowtitle="Beginning Cryptography with Java Examples">
+           <classpath refid="project.path"/>
+           <fileset dir="src" defaultexcludes="yes">
+               <include name="**/*.java"/>
+           </fileset>
+
+           <doctitle><![CDATA[<h1>Beginning Cryptography with Java Examples</h1>]]></doctitle>
+<bottom><![CDATA[<i>Examples from <a href="http://www.wiley.com/WileyCDA/WileyTitle/productCd-0764596330.html">"Beginning Cryptography with Java"</a></i>]]></bottom>
+
+        </javadoc>
+    </target>
+
+</project>
