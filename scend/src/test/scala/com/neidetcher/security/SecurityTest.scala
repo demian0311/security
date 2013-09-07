@@ -1,14 +1,12 @@
 package com.neidetcher.security
 
 import org.junit.Test
+import com.neidetcher.security.Security
 
 class SecurityTest {
-  @Test def test(){
-    println("hello world")
-  }
-
-  @Test def foo(){
-    println("bar")
+  @Test def checkPolicyFiles(){
+    val s: Security = new Security()
+    s.checkPolicyFiles()
   }
 
 }
