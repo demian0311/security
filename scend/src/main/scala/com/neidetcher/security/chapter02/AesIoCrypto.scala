@@ -31,11 +31,11 @@ class AesIoCrypto {
     val cipherInputStream = new CipherInputStream(byteArrayInputStream, cipher)
     val byteArrayOutputStream = new ByteArrayOutputStream()
 
-    var ch: Int = 0
-    while(ch >= 0){
-      ch = cipherInputStream.read()
-      println("ch: " + ch)
+    // TODO-DLN: this is horrible
+    var ch: Int = cipherInputStream.read()
+    while(ch != -1){
       byteArrayOutputStream.write(ch)
+      ch = cipherInputStream.read()
     }
 
     val encryptedByteArray = byteArrayOutputStream.toByteArray()
