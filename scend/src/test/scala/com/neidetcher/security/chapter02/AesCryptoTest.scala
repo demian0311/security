@@ -3,9 +3,9 @@ package com.neidetcher.security
 import org.junit.Test
 import org.junit.Assert._
 
-class Chapter02Test {
+class AesCryptoTest {
 
-  val chapter02 = new Chapter02()
+  val chapter02 = new AesCrypto()
 
   val plainBytes: Array[Byte] = Array[Byte](
     0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77,

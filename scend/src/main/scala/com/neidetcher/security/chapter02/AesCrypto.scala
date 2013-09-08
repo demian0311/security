@@ -8,7 +8,7 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider
 /**
  * This uses a hard-coded symmetric key.
  */
-class Chapter02 {
+class AesCrypto {
 
   Security.addProvider(new BouncyCastleProvider())
 
