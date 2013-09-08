@@ -6,7 +6,7 @@ import java.security.Security
 import org.bouncycastle.jce.provider.BouncyCastleProvider
 
 /**
- * This uses a symmetric key, hard-coded in the class.
+ * This uses a hard-coded symmetric key.
  */
 class Chapter02 {
 
@@ -20,23 +20,31 @@ class Chapter02 {
   val key = new SecretKeySpec(keyBytes, "AES")
   val cipher: Cipher = Cipher.getInstance("AES/ECB/NoPadding", "BC")
 
-  def encrypt(input: Array[Byte]): Array[Byte] = {
+  def encrypt(input: Array[Byte]): Option[Array[Byte]] = {
     cipher.init(Cipher.ENCRYPT_MODE, key)
 
     val cipherText: Array[Byte] = new Array[Byte](input.length)
-    cipher.update(input, 0, input.length, cipherText, 0)
-    cipher.doFinal(cipherText, input.length)
+    val numBytesUpdated = cipher.update(input, 0, input.length, cipherText, 0)
+    val numBytesFinal = cipher.doFinal(cipherText, numBytesUpdated)
 
-    cipherText
+    if(numBytesFinal + numBytesUpdated == input.length){
+      Some(cipherText)
+    } else {
+      None
+    }
   }
 
-  def decrypt(encryptedBytes: Array[Byte]): Array[Byte] = {
+  def decrypt(encryptedBytes: Array[Byte]): Option[Array[Byte]] = {
     cipher.init(Cipher.DECRYPT_MODE, key)
 
     val plainText: Array[Byte] = new Array[Byte](encryptedBytes.length)
-    cipher.update(encryptedBytes, 0, encryptedBytes.length, plainText, 0)
-    cipher.doFinal(plainText, encryptedBytes.length)
+    val numBytesUpdated = cipher.update(encryptedBytes, 0, encryptedBytes.length, plainText, 0)
+    val numBytesFinal = cipher.doFinal(plainText, numBytesUpdated)
 
-    plainText
+    if(numBytesFinal + numBytesUpdated == encryptedBytes.length){
+      Some(plainText)
+    } else {
+      None
+    }
   }
 }
