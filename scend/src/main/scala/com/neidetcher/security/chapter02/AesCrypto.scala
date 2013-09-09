@@ -18,6 +18,8 @@ class AesCrypto {
     0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17)
 
   val key = new SecretKeySpec(keyBytes, "AES")
+
+  // TODO-DLN: make cipher available like in AesIoCrypto
   val cipher: Cipher = Cipher.getInstance("AES/ECB/NoPadding", "BC")
 
   def encrypt(input: Array[Byte]): Option[Array[Byte]] = {
