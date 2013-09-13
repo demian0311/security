@@ -12,10 +12,12 @@ object Util {
       "" + digits.charAt(v >> 4) + digits.charAt(v & 0xf)
     }.mkString
 
+  def printBytes(label: String, byteArray: Array[Byte]) = {
+    println(s"${label}: ${Util.toHex(byteArray)}")
+  }
 
   def toString(byteArray: Array[Byte]): String =
     byteArray.map{_.toChar}.mkString
-
 
   def toByteArray(stringIn: String): Array[Byte] =
     stringIn.map{_.toByte}.toArray
@@ -46,7 +48,6 @@ object Util {
         sha.update(state)
       }
     }
-
   }
 
 
