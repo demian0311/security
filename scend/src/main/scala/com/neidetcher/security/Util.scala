@@ -22,6 +22,10 @@ object Util {
   def toByteArray(stringIn: String): Array[Byte] =
     stringIn.map{_.toByte}.toArray
 
+  /**
+   * This has some lame, non-idiomatic code in it but it isn't meant
+   * to be used in any sort of production context.
+   */
   protected class FixedRand extends SecureRandom {
 
     Security.addProvider(new BouncyCastleProvider())
@@ -34,7 +38,6 @@ object Util {
 
       sha.update(state)
 
-      // TODO: refactor this when we have good tests
       while(off < bytes.length){
         state = sha.digest()
 
@@ -55,6 +58,9 @@ object Util {
     if(real) {
       new SecureRandom()
     } else {
+      println("****************************************")
+      println("* USING INSECURE RANDOM IMPLEMENTATION *")
+      println("****************************************")
       new FixedRand()
     }
   }

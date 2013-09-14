@@ -1,14 +1,12 @@
 package com.neidetcher.security.chapter04
 
-import org.junit.Test
 import com.neidetcher.security.Util
+import org.junit.Test
 import org.junit.Assert._
-import scala.Some
 
-class BaseRsaExampleTest {
-
+class RandomKeyRsaExampleTest {
   @Test def test(){
-    val unit = new BaseRsaExample()
+    val unit = new RandomKeyRsaExample()
 
     val plainBytes = Array[Byte](0xbe.toByte, 0xef.toByte)
     Util.printBytes("PLN", plainBytes)
@@ -18,8 +16,9 @@ class BaseRsaExampleTest {
       _ <- Some(Util.printBytes("ENC", encryptedBytes))
       decryptedBytes <- unit.decrypt(encryptedBytes)
       _ <- Some(Util.printBytes("DEC", decryptedBytes))
-    } yield(decryptedBytes)
+    } yield decryptedBytes
 
     assertEquals(Util.toHex(plainBytes), Util.toHex(result.get))
   }
+
 }
