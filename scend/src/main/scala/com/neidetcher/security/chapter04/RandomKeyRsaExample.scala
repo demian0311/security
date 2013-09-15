@@ -13,7 +13,7 @@ class RandomKeyRsaExample {
 
   private lazy val keyPair = {
     val keyPairGenerator = KeyPairGenerator.getInstance("RSA", "BC")
-    //keyPairGenerator.initialize(256, secureRandom)
+    //keyPairGenerator.initialize(256, secureRandom) // a small value
     keyPairGenerator.initialize(new RSAKeyGenParameterSpec(256, RSAKeyGenParameterSpec.F4)) // X.509 spec
 
     val keyPair: KeyPair = keyPairGenerator.generateKeyPair()
