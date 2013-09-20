@@ -1,0 +1,5 @@
+project*
+.idea*
+target
+.DS_Store
+scend/project/target/*
