@@ -17,7 +17,7 @@ class SslClientExample(val destinationHost: String, val destinationPort: Int) {
     var ch = 0
     while (ch != '!'){
       ch = in.read()
-      println(ch.toChar)
+      print(ch.toChar)
     }
 
     println(ch)

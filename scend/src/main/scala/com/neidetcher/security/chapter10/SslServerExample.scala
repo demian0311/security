@@ -20,7 +20,7 @@ class SslServerExample(val port: Int) {
     var ch = 0
     while (ch != '!'){
       ch = in.read()
-      println("ch: " + ch.toChar)
+      print(ch.toChar)
       out.write(ch)
     }
 
