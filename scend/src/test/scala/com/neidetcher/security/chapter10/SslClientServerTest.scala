@@ -22,7 +22,7 @@ class SslClientServerTest {
     val sslClientExample = new SslClientExample("localhost", 8012)
 
     println(">> getting data from server")
-    val dataFromServer = sslClientExample.sendAndReceive("hello world!")
+    val dataFromServer = sslClientExample.sendAndReceive("hello world")
     println("data from server: " + dataFromServer)
   }
 }
