@@ -11,7 +11,7 @@ class SslClientServerTest {
     * - to make the public key
     * keytool -export -keystore ./chapter10-keystore.jks -alias localhost -file chapter10-truststore.cer
     *
-    * - to make the trust store
+    * - to make the trust store from the public key
     * keytool -import -file chapter10-public-key.cer -alias localhost -keystore chapter10-truststore.jks
     */
   @Test def test{
@@ -23,6 +23,6 @@ class SslClientServerTest {
 
     println(">> getting data from server")
     val dataFromServer = sslClientExample.sendAndReceive("hello world")
-    println("data from server: " + dataFromServer)
+    println("from server: " + dataFromServer)
   }
 }

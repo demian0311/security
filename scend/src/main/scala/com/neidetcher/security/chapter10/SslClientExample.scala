@@ -14,23 +14,11 @@ class SslClientExample(val destinationHost: String, val destinationPort: Int) {
     out.write(Util.toByteArray(message))
     out.write('!')
 
-    var ch = 0
+    var ch: Byte = '\n'
     while (ch != '!'){
-      ch = in.read()
+      ch = in.read().toByte
       print(ch.toChar)
     }
-
-    println(ch)
-
-    "SENT ALL TO STDOUT"
+    ">>>"
   }
-
-  /*
-  def sendAndReceive0(message: String): String = {
-    val out = socket.getOutputStream()
-    out.write(Util.toByteArray(message))
-
-    val in = socket.getInputStream()
-    scala.io.Source.fromInputStream(in).getLines().mkString("\n")
-  }*/
 }

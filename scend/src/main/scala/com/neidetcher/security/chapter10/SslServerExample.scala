@@ -2,7 +2,6 @@ package com.neidetcher.security.chapter10
 
 import javax.net.ssl.SSLServerSocketFactory
 import com.neidetcher.security.Util
-import scala.io.Source
 
 class SslServerExample(val port: Int) {
   val socketFactory = SSLServerSocketFactory.getDefault()
@@ -11,44 +10,21 @@ class SslServerExample(val port: Int) {
 
   def receiveAndSend(message: String): String = {
     println("-- session started --")
-
     val in = sslSocket.getInputStream()
-    val out = sslSocket.getOutputStream()
-
-    out.write(Util.toByteArray(message))
 
     var ch = 0
     while (ch != '!'){
-      ch = in.read()
+      ch = in.read().toByte
       print(ch.toChar)
-      out.write(ch)
     }
 
-    out.write('!')
-
-    sslSocket.close()
-    println("-- session closed --")
-
-    ""
-  }
-
-  /*def receiveAndSend0(message: String): String = {
-    println("-- session started --")
-
-    val in = sslSocket.getInputStream()
     val out = sslSocket.getOutputStream()
     out.write(Util.toByteArray(message))
 
-    val receivedMessage = Source.fromInputStream(in).getLines().mkString("\n")
-
-    println("receivedMessage: " + receivedMessage)
-
     sslSocket.close()
-
-    println("-- session ended --")
-
-    receivedMessage
-  }*/
+    println("-- session closed --")
+    "<<<"
+  }
 }
 
 object SslServerExample extends App {
@@ -56,7 +32,8 @@ object SslServerExample extends App {
   System.setProperty("javax.net.ssl.keyStorePassword", "foobar")
 
   val sslServerExample = new SslServerExample(8012)
-  sslServerExample.receiveAndSend("foo bar")
+  val fromClient = sslServerExample.receiveAndSend("foo bar!")
+  println("from client: " + fromClient)
 }
 
 
