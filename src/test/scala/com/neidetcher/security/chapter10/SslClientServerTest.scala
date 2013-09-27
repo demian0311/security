@@ -1,6 +1,6 @@
 package com.neidetcher.security.chapter10
 
-import org.junit.Test
+import org.junit.{Ignore, Test}
 
 /** integration test */
 class SslClientServerTest {
@@ -14,7 +14,9 @@ class SslClientServerTest {
     * - to make the trust store from the public key
     * keytool -import -file chapter10-public-key.cer -alias localhost -keystore chapter10-truststore.jks
     */
-  @Test def test{
+  //@Test
+  @Ignore("you need to `sbt run` the project and then run this from an IDE to see it in action")
+  def test{
     // the trust store
     System.setProperty("javax.net.ssl.trustStore", "src/main/resources/chapter10-truststore.jks")
     System.setProperty("javax.net.ssl.trustStorePassword", "foobar")
