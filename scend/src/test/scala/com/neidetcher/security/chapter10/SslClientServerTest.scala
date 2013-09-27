@@ -15,6 +15,7 @@ class SslClientServerTest {
     * keytool -import -file chapter10-public-key.cer -alias localhost -keystore chapter10-truststore.jks
     */
   @Test def test{
+    // the trust store
     System.setProperty("javax.net.ssl.trustStore", "src/main/resources/chapter10-truststore.jks")
     System.setProperty("javax.net.ssl.trustStorePassword", "foobar")
 
