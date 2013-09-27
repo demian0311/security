@@ -1,7 +1,7 @@
 I'm reading 'Beginning Cryptography in Java' and this is me playing
 with APIs for a few of the examples but using Scala.
 
-## Running SslClietnServerTest
+## Running SslClientServerTest
 - From the commandline run `sbt run`.  That will fine the only App in the project
 which is an SSL server.
 - From within an IDE remove the @Ignore from SslClientServerTest and run that.  If
